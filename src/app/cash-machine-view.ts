@@ -11,7 +11,7 @@ export class CashMachineView {
         if (error) {
             this.showError(error);
         } else {
-            this.createBanknotesList(banknotesList);
+            // this.createBanknotesList(banknotesList);
         }
     }
 

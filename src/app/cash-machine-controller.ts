@@ -11,19 +11,36 @@ export class CashMachineController {
         this.validateInput(input);
     }
 
-    sortByBanknotes(availableNotes: number[], amount: number): number[] {
-        const banknotes: number[] = [];
+    // sortByBanknotes(availableNotes: number[], amount: number): number[] {
+    //     const banknotes: number[] = [];
+    //     const notesLength: number = availableNotes.length;
+    //     for (let i = 0; i < notesLength;) {
+    //         if (amount - availableNotes[i] >= 0) {
+    //             banknotes.push(availableNotes[i]);
+    //             amount -= availableNotes[i];
+    //         } else if (amount === 0) {
+    //             break;
+    //         } else {
+    //             i++;
+    //         }
+    //     }
+    //     console.log('banknotes', banknotes);
+    //     return banknotes;
+    // }
+
+    sortByBanknotes(availableNotes: number[], amount: number): any {
+        const banknotes: {[key in string] : number} = {};
         const notesLength: number = availableNotes.length;
         for (let i = 0; i < notesLength;) {
-            if (amount - availableNotes[i] >= 0) {
-                banknotes.push(availableNotes[i]);
-                amount -= availableNotes[i];
+            if (amount / availableNotes[i] >= 1) {
+                banknotes[availableNotes[i]] = Math.floor(amount / availableNotes[i]);
+                amount -= Math.floor(amount / availableNotes[i]) * availableNotes[i];
             } else if (amount === 0) {
                 break;
-            } else {
-                i++;
             }
+            i++;
         }
+        console.log('banknotes', banknotes);
         return banknotes;
     }
 
